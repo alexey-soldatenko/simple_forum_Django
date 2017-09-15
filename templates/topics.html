@@ -1,0 +1,65 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+
+
+<div class="content">
+{%if all_topics%}
+<h2 style="text-align:center">Все темы:</h2>
+
+{%for topic in all_topics%}
+<p style="color: white">{{forloop.counter}}.<a href="/topic/{{topic.id}}">{{topic.topic_name}}</a></p>
+<p><span style="color:red">{{topic.author_name}}</span> - {{topic.date}}</p>
+
+{%for answers in count_answers%}
+{%if forloop.counter == forloop.parentloop.counter%}
+<p>Ответов - {{answers}}</p>
+{%endif%}
+{%endfor%}
+<hr>
+{%endfor%}
+
+{#Пагинация страниц!!!!#}
+{#ссылка на предыдущую страницу#}
+{%if all_topics.paginator.count > number_topics_on_page%}
+<a {%if all_topics.has_previous%} href="./{{all_topics.previous_page_number}}" {%endif%}>&lt;</a>
+
+{%for page in all_topics.paginator.page_range%}
+{#Диапазон видимых страниц#}
+{%if forloop.counter >= all_topics.number|add:-2 and forloop.counter <= all_topics.number|add:2%}
+<a {%if all_topics.number == page%} style="color:red; font-size:0.8em; text-decoration:none;"{%else%}style="text-decoration:none;" href="./{{page}} {%endif%}">{{page}}</a>
+{%endif%}
+
+{#Невидимые страницы заменяются ...#}
+{%if forloop.counter == all_topics.number|add:-3 or forloop.counter == all_topics.number|add:3%}
+...
+{%endif%}
+
+{%endfor%}
+{#ссылка на следующую страницу#}
+<a {%if all_topics.has_next%} href="./{{all_topics.next_page_number}}" {%endif%}>&gt;</a>
+{%endif%}
+
+{%else%}
+<p style="text-align: center; color:red">В данной рубрике пока ещё нет тем. Будьте первым!</p>
+{%endif%}
+</div>
+{%endblock%}
+{%block footer%}
+{{block.super}}
+{%endblock%}

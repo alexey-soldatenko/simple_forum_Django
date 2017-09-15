@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}">
+</head>
+<body>
+<p></p>
+{%block header%}
+
+<div class="header">
+<div class="menu">
+	<ul>
+		<li> <a href="/">Главная</a></li>
+		<li><a href="/last_topics">Последнее</a></li>
+		<li><a href="/create_topic">Создать тему</a></li>
+		<li> <a href="/my_profile">Мой профиль</a></li>
+	</ul>
+</div>
+
+<div id="enter">
+{%block log_user%}
+	<a href="/login">Вход</a>
+	 <a href="/sign_up">Регистрация</a>
+	 {%endblock%}
+</div>
+
+
+</div>
+{%endblock%}
+<p></p>
+{%block content%}
+
+{%endblock%}
+
+{%block footer%}
+<div class="footer">
+	&copy;Alexey Soldatenko. Сделано с любовью {% now "Y" %}
+</div>
+{%endblock%}
+</body>
+</html>

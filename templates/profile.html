@@ -1,0 +1,62 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+
+
+<div class="content">
+{%if user.is_anonymous%}
+<p style="text-align:center; color:red">Для того, чтобы зайти в свой профиль, вам необходимо авторизироваться на сайте. Для этого воспользуйтесь функцией <a style="color:white" href="/login">войти</a> или <a style="color:white"href="/sign_up">зарегистрироваться</a>.</p>
+{%else%}
+<h2 style="text-align:center">Ваши текущие действия на форуме</h2>
+<div style="float:left; text-align:center">
+	<img src="{% static "foto.png" %}" width="100px"><br>
+	<span>{{user.username}}</span>
+</div>
+<div class="author" style="float:left; padding:0">
+	<p>Количество созданных Вами тем: <span style="color:red">{{num_topics}}</span></p>
+	<div class="scroll_topics"><ul>
+		{%for topic in topics%}
+		<li>
+		<a href="topic/{{topic.id}}">{{topic.topic_name}}</a>
+		<br>
+		<span style="font-size: 0.8em">{{topic.date}}</span>
+		</li>
+		{%endfor%}
+	</ul>
+	</div>
+</div>
+<div class="answerer" style="float:left; margin-left: 5%">
+	<p>Количество ответов: <span style="color:red">{{num_answers}}</span></p>
+	<div class="scroll_topics">
+	<ul>
+		{%for answer in answers.values%}
+		<li>
+		<a href="topic/{{answer.topic_name.id}}">{{answer.topic_name.topic_name}}</a>
+		<br>
+		<span style="font-size: 0.8em">{{answer.date}}</span>
+		</li>
+		{%endfor%}
+	</ul>
+	</div>
+</div>
+{%endif%}
+</div>
+{%endblock%}
+{%block footer%}
+{{block.super}}
+{%endblock%}

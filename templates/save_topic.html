@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+{%block content%}
+<div class="content">
+
+{%if anonymous%}
+<p style="text-align:center">{{message}}</p><br>
+<p style="text-align:center">Повторите попытку после того как войдёте в систему.</p>
+{%else%}
+
+<p style="text-align:center">{{message}}</p>
+<ul>
+    <li style="margin-left: 7%"><a href="/create_topic">Создать новую тему</a></li>
+    <li style="margin-left: 7%"><a href="/my_profile">Мой профиль</a></li>
+    <li style="margin-left: 7%"><a href="/">Главная</a></li>
+</ul>
+
+
+{%endif%}
+</div>
+{%endblock%}
+
+{%block footer%}
+{{block.super}}
+{%endblock%}

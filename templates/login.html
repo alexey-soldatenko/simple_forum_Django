@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+ 
+
+
+{%block content%}
+<div class="content">
+<div class="login_form">
+<p style="text-align:center">Введите ваши данные:</p><hr>
+
+<form action="/login" method="post">
+{%csrf_token%}
+<p style="text-align:center; color:red; font-size:0.8em">{{message}}</p>
+{%for field in form%}
+<p  style="margin-left:40%">{{field.label_tag}}</p>
+<p style="width:60%; margin-left:25%">{{field}}</p>
+{%endfor%}
+<p style="width:30%; margin-left:40%"><input type="submit" value="Отправить"><p>
+</form>
+
+</div>
+</div>
+{%endblock%}
+
+{%block footer%}
+{{block.super}}
+{%endblock%}

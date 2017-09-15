@@ -1,0 +1,75 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+
+<script src="{%static "script.js"%}"></script>
+
+ <script type="text/javascript">
+window.onload = function() {
+    dynamicSelect("Section", "Subsection");
+}
+</script>
+
+<div class="content">
+<form action="/save_topic" method="post" id="form">
+{%csrf_token%}
+	<p>Название темы:</p>
+    <p><input type="text" name="title"></p>
+    <br>
+   <p>Выберите раздел:</p>
+   <p><select name="Section" id="Section">
+        <option value="other">Другое</option>
+        <option value="C">C</option>
+        <option value="C_plus_plus">C++</option>
+        <option value="Python">Python</option>
+        <option value="Databases">Databases</option>
+    </select>
+    <select name="Subsection" id="Subsection">
+        <option class="other" value="other">Другое</option>
+        <option class="C" value="C for begginer">С для начинающих</option>
+        <option class="C" value="C for linux">С под Linux</option>
+        <option class="C" value="other">Другое</option>
+
+        <option class="C_plus_plus" value="C_plus_plus for begginer">С++ для начинающих</option>
+        <option class="C_plus_plus" value="C_plus_plus and networks">C++ и сети</option>
+        <option class="C_plus_plus" value="C_plus_plus and Qt">С++ и Qt</option>
+        <option class="C_plus_plus" value="Visual C_plus_plus">Visual C++</option>
+        <option class="C_plus_plus" value="other">Другое</option>
+
+        <option class="Python" value="Python for begginer">Python для начинающих</option>
+        <option class="Python" value="Python parsing">Python парсинг</option>
+        <option class="Python" value="Python and Qt">Python и Qt</option>
+        <option class="Python" value="Python and Django">Python/Django</option>
+        <option class="Python" value="other">Другое</option>
+
+        <option class="Databases" value="MySQL">MySQL</option>
+        <option class="Databases" value="SQLite">SQLite</option>
+        <option class="Databases" value="PostgreSQL">PostgreSQL</option>
+        <option class="Databases" value="other">Другое</option>
+
+    </select></p>
+    <br>
+    <p>Текст вашего сообщения:</p>
+    <p><textarea name="context" rows="10" spellcheck="false"></textarea></p><br>
+</form>
+<button type="submit" form="form">Отправить сообщение</button>
+</div>
+{%endblock%}
+{%block footer%}
+{{block.super}}
+{%endblock%}

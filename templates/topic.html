@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+
+
+<div class="content">
+<p><span style="color:red; font-size: 1.2em">{{topic.author_name}}</span> спрашивает: {{topic.topic_name}}</p>
+<div class="field_answer">{{topic.context}}</div>
+<p style="text-align: right">{{topic.date}}</p><hr>
+
+{%for answer in answers%}
+<p><span style="color:red; font-size: 1.2em">{{answer.user_name}}</span>:</p>
+<div class="field_answer">{{answer.context}}</div>
+<p style="{%if forloop.counter|divisibleby:2 %} text-align: right {%endif%}">{{topic.date|date:"j.m.Y"}} {{topic.date|time:"TIME_FORMAT"}}</p>
+{%endfor%}
+
+{%if user.is_anonymous or not user.is_active%}
+<p style="text-align: center">Чтобы ответить, Вам нужно войти.</p>
+{%else%}
+<p>Ваш ответ:</p>
+<form action="/save_answer/{{topic.id}}" method="post">
+{%csrf_token%}
+	<textarea name="answer"></textarea><br><br>
+	<button type="submit">Отправить</button>
+</form>
+{%endif%}
+</div>
+{%endblock%}
+{%block footer%}
+{{block.super}}
+{%endblock%}

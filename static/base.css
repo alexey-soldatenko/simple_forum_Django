@@ -1,0 +1,129 @@
+body{
+	margin: 0;
+	padding: 0;
+	background: #202020;
+	color: #808080;
+}
+.header{
+	width: 60%;
+	background: #333;
+	margin: 6px auto 10px auto;
+	padding: 10px 25px 1px;
+	border-radius: 8px;
+	box-sizing: content-box;
+	overflow-x:hidden; 
+}
+
+.header ul li{
+	display: inline-block;
+	padding-left: 20px;
+}
+
+.header .menu{
+	float: left;
+
+}
+.header a{
+	color: #808080;
+	text-decoration: none;
+}
+
+#enter{
+	margin-left: 3%;
+	width: 10%;
+	float: right;
+	padding-right: 15px;
+	text-align: center;
+}
+
+
+.login_form{
+	width: 50%;
+	margin-left: 25%;
+	border-radius: 7px;
+	padding: 15px 15px 5px 15px;
+	background: #202020;
+}
+
+.login_form input[type=submit]{
+	background: #808080;
+	border: 1px solid #808080;
+	color: white;
+}
+
+.login_form input[type=submit]:hover{
+	border: 1px solid white;
+	background: #202020;
+}
+
+
+
+.content{
+	border-radius: 8px;
+	width: 60%;
+	min-height: 100vh;
+	margin: 6px auto 10px auto;
+	padding: 60px 25px 20px;
+	background: #333;
+	color: #bbb;
+}
+.content li{
+	padding: 5px;
+	list-style-type: none;
+	
+}
+
+input, textarea{
+	width: 80%;
+	resize: none;
+	border-radius: 5px;
+}
+
+
+.content a{
+	 color: inherit;
+
+}
+
+
+.field_answer{
+	padding: 10px;
+	border-radius: 8px;
+	background: #202020;
+	color: white;
+}
+
+.author{
+	box-sizing: content-box;
+	margin-left: 5%;
+	width: 40%;
+	overflow: hidden;
+
+}
+.scroll_topics{
+	border-radius: 7px;
+	border: 2px solid #202020;
+	height: 200px;
+	overflow-x: hidden;
+	
+}
+.content .author ul, .answerer ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style-position:inside;
+}
+
+.answerer{
+	box-sizing: content-box;
+}
+
+
+.footer{
+	width: 60%;
+	background: #333;
+	margin: 6px auto 10px auto;
+	padding: 10px 25px 10px;
+	border-radius: 8px;
+	text-align: center;
+}

@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+
+
+<div class="content">
+<h3 style="text-align: center">Последние 10 опубликованных тем:</h3>
+{%for topic in topics%}
+<p>{{forloop.counter}}.<a href="topic/{{topic.id}}">{{topic.topic_name}}</a><br>
+<span style="color:red">{{topic.author_name}}</span>:
+<span style="font-size: 0.8em">{{topic.date}}</span></p><hr>
+{%endfor%}
+</div>
+{%endblock%}
+{%block footer%}
+{{block.super}}
+{%endblock%}

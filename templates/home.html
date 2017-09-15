@@ -1,0 +1,67 @@
+{%extends "base.html"%}
+{%load staticfiles%}
+{%block header%}
+{{block.super}}
+{%endblock%}
+
+{%block log_user%}
+{%if user.is_anonymous%}
+{{block.super}}
+{%elif user.is_active%}
+<div style="margin-top: 18%">
+<a title="Выйти" style="color:white; font-size: 1.2em" href="/logout">{{user.username}}</a>
+</div>
+{%else%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+{%block content%}
+<div class="content">
+	Программирование:
+	<ul>
+		<li>C++
+			<ul>
+				<li> <a href="topics/C_plus_plus/C_plus_plus for begginer">С++ для начинающих</a></li>
+				<li> <a href="topics/C_plus_plus/C_plus_plus and networks">C++ и сети</a></li>
+				<li> <a href="topics/C_plus_plus/C_plus_plus and Qt">С++ и Qt</a></li>
+				<li> <a href="topics/C_plus_plus/Visual C_plus_plus ">Visual C++</a></li>
+				<li><a href="topics/C_plus_plus/other">Другое</a></li>
+			</ul>
+		</li>
+		<li>C
+			<ul>
+				<li> <a href="topics/C/C for begginer">С для начинающих</a></li>
+				<li> <a href="topics/C/C for linux">C под linux</a></li>
+				<li><a href="topics/C/other">Другое</a></li>
+			</ul>
+		</li>
+		<li>Python
+			<ul>
+				<li> <a href="topics/Python/Python for begginer">Python для начинающих</a></li>
+				<li> <a href="topics/Python/Python and Qt">PythonQt</a></li>
+				<li> <a href="topics/Python/Python and Django">Python/Django</a></li>
+				<li> <a href="topics/Python/Python parsing">Parsing with python</a></li>
+				<li><a href="topics/Python/other">Другое</a></li>
+			</ul>
+		</li>
+		<li>Базы данных
+			<ul> 
+				<li> <a href="topics/Databases/MySQL">MySQL</a></li>
+				<li> <a href="topics/Databases/SQLite">SQLite</a></li>
+				<li> <a href="topics/Databases/PostgreSQL">PostgreSQL</a></li>
+				<li><a href="topics/Databases/other">Другое</a></li>
+			</ul>
+		</li>
+		<li>Другое
+			<ul>
+				<li><a href="topics/other/other">Другое</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+{%endblock%}
+
+{%block footer%}
+{{block.super}}
+{%endblock%}
